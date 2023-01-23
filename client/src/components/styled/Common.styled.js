@@ -7,7 +7,7 @@ export const Container = styled.div`
    margin:1em auto;
    padding:1em;
 `
- export const Split = styled.div`
+export const Split = styled.div`
   display:flex;
   button{
    background:transparent;
@@ -20,9 +20,19 @@ export const StyledError=styled.div`
    padding-top:15em;
    text-align:center;
    font-family:var(--ff-sub);
+   color:${({theme})=>theme.secondaryClr};
    h3{
       font-size:4rem;
       margin:0;
+    
+   }
+   p{
+      font-size:2rem;
+      margin:0 0 1em 0;
+      font-weight:700;
+   }
+   a{
+      text-decoration:none;
       color:${({theme})=>theme.secondaryClr};
    }
 `
@@ -53,4 +63,41 @@ export const StyledHeader = styled.header`
 
 
 `
+export const StyledFooter = styled.footer`
+  margin-top:auto;
+  text-align:center;
+  padding:1em;
+  background-color:#fff;
+  font-family:var(--ff-secondary);
+  font-weight:600;
+  p{
+   line-height:1.6;
+   margin:0;
+  }
+  span{
+   color:${({theme})=>theme.secondaryClr};
+   font-weight:800;
+  }
 
+`
+export const StyledAdminHome = styled.div`
+   
+   min-height:100vh;
+   padding-top:7em;
+   font-family:var(--ff-main);
+   h2{
+      text-align:center;
+   }
+`
+export const StyledAdminNav = styled.nav`
+  background-color:white;
+  ul{
+   padding:0;
+   display:flex;
+   justify-content:center;
+   list-style:none;
+   width:100%;
+   gap:1em;
+  }
+  padding:0.5em;
+`

@@ -1,15 +1,16 @@
 
-import { LoginStyled as LoginBox, LoginMain } from "./styled/login.styled";
-import StyleButton from "./styled/Buttons.styled";
+import { LoginStyled as LoginBox, LoginMain } from "../styled/login.styled";
+import StyleButton from "../styled/Buttons.styled";
 import { useState } from "react";
 import { useNavigate} from "react-router-dom";
-import axios from 'axios'
+import { useGlobalContext } from "../../context/globalcontext";
 
 const Login = () => {
 
 
 
    const navigate = useNavigate()
+   const {login,setLoggedUser} = useGlobalContext()
    const [user,setUser] = useState({username:'',password:''})
    const [error,setError] = useState('')
 
@@ -19,34 +20,31 @@ const Login = () => {
      setUser({...user,[feild]:value})
    }
 
+
    const handleSubmit=async(e)=>{
       e.preventDefault();
       if(!(user.password==='' || user.name==='')) {
-         // 
-      
-         try{
-
-            const formData = new FormData();
-            formData.append('name',user.username)
-            formData.append('password',user.password)
-            const userL = await axios.post('http://localhost:3001/admin/login',formData)
-      
-            console.log(userL)
-         }catch(e){
-            console.log(e.message)
-         }
-
-               
+          const {data} = await login(user.username,user.password);
+          
+          console.log(data)
+          if(data.success){
+            setLoggedUser(data) 
+            localStorage.setItem('user',JSON.stringify(data)) 
+            navigate('/admin/home')
+          }
+          else{
+            setError('Invalid Login')
+            return 
+          }            
       }
       setError('Fill All feilds')
-
-      
+  
    }
     return (
         <LoginMain>
             <LoginBox>
                 <h2>Login</h2>
-                <form  onSubmit={handleSubmit} >
+                <form  method='post' encType="application/x-www-form-urlencoded" onSubmit={handleSubmit}  >
                     <div>
                     <label htmlFor="username">UserName</label>
                     <input type="text" id='username' name='username' onChange={(e)=>handleChange(e.target)} />

@@ -1,14 +1,14 @@
-
-
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Home from './components/home';
-import Login from './components/login';
+import Login from './components/admin/login';
 import Header from './components/header';
 import GlobalContext from './context/globalcontext';
-import Error from './components/error';
 import { ThemeProvider } from 'styled-components';
 import Global from './components/styled/global.styled';
 import './css/index.css';
+import PrivateRoute from './private/PrivateRoute';
+import Footer from './components/common/footer';
+import Error from './components/common/error';
 
 function App() {
  
@@ -22,26 +22,22 @@ function App() {
 
 
 
-  return (
-    
+  return (  
     <Router>
       <GlobalContext>
         <ThemeProvider theme={theme}>
           <Global />
           <Header />
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/admin/login' element={<Login />} />
-            <Route path='*' element={<Error/>}/>
-          </Routes>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/admin/login' element={<Login />} />
+              <Route path ='/admin/home' element={<PrivateRoute/>} />
+              <Route path='*' element={<Error/>}/>
+            </Routes>
+          <Footer/>
         </ThemeProvider>
       </GlobalContext>
     </Router>
-
-
-
-
-
   );
 }
 

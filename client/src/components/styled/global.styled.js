@@ -15,6 +15,7 @@ const Global = createGlobalStyle`
      margin: 0;
      min-height: 100vh;
      /* font-family: var(--ff-main); */
+     background-color:${({theme})=>theme.background};
 
    }
    button{
@@ -34,7 +35,7 @@ const Global = createGlobalStyle`
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #222;
+  background-color:${({theme})=>theme.secondaryClr};
 }
 
  `

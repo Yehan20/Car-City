@@ -2,15 +2,29 @@ import express from "express";
 import mongoose from "mongoose";
 import adminRoutes from "./routes/admin.route.js";
 import cors from 'cors'
-import bodyParser from 'body-parser'
+
+import multer from "multer";
+
+
 const app = express();
 
+const useFormData = multer()
+
+// const storage = multer.diskStorage({
+//     destination:'test/'
+// })
+
+// const uploads = multer({
+//     storage:storage
+// })
+
+app.use(cors())
 app.use(express.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(useFormData.none())
 
 
+app.use('/admin',adminRoutes)
 
-app.use('/admin',cors(),adminRoutes)
 
 
 app.listen(3001, () => {

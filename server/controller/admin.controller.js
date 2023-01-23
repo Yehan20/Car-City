@@ -1,5 +1,6 @@
 import { carModel} from '../model/Data.js'
 import adminModel from '../model/Admin.js'
+import formidable from "formidable";
 
 const addCar = async (req, res) => {
     try {
@@ -30,11 +31,19 @@ const showCars = async(req,res)=>{
 
 }
 
-const login = async (req,res)=>{
-    console.log(req.body)
-//    const user = await adminModel.findOne({name:"yehan_nk",password:"abc123"})
-//    res.json(user)
-     res.send({name:'aex',pwd:'123'});
+const login =async  (req,res)=>{
+   
+    const {name,password} = req.body
+    try{
+        const user = await adminModel.findOne({name,password})
+        if(user){
+            return res.status(200).json({success:true,error:'',name:user.name})
+        }
+        throw new Error('wrong login')
+    }catch(e){
+    //   console.log(e)
+    }  
+    res.status(404).json({sucess:false,error:'invalid login'})
 }
 
 const adminController = {
