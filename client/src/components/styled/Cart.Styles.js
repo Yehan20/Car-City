@@ -46,6 +46,7 @@ export const CartHeaderStyled=styled.div`
         font-size:2rem;
         padding-left:2em;
         letter-spacing:2px;
+        font-weight:700;
         span{
             color:${({theme})=>theme.secondaryClr};
             text-transform:uppercase;

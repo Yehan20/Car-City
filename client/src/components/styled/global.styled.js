@@ -24,7 +24,44 @@ const Global = createGlobalStyle`
    img{
     max-width:100%;
    }
-
+   
+   .modal-content{
+    .modal-body{
+      margin:0;
+    }
+     border-radius:0;
+     font-family:var(--ff-main);
+     h3{
+      font-family:var(--ff-sub);
+      font-weight:600;
+      font-size:2rem;
+     }
+     div{
+  
+      width:100%;
+     
+    }
+   label{
+      display:block;
+      font-weight:600;
+      text-transform:uppercase;
+      letterspacing:1px;
+    }
+    input[type=text], input[type=password],input[type=number],input[type=file],textarea{
+      padding:0.5em 1em 0.4em 0.5em;
+      border-radius:0.1em;
+      border:1px solid #f4f4f4;
+      font-family:var(--ff-main);
+      width:100%;
+      font-size:1.1rem;
+      margin-bottom:1.1em;
+    
+      &:focus{
+        outline:0;
+      }
+    
+    }
+   }
    
 ::-webkit-scrollbar {
   width: 15px;

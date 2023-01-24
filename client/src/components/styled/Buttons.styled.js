@@ -6,6 +6,7 @@ const StyleButton=styled.button`
    }} !important;
    
    display:${props=>props.display};
+   margin:${props=>props.margin};
    padding:0.5em 1em;
    font-size:${props=>props.fontSize};
    width:${props=>props.width};
@@ -24,6 +25,7 @@ const StyleButton=styled.button`
 StyleButton.defaultProps={
     display:'block',
     fontSize:'1.1rem',
-    width:'100%'
+    width:'100%',
+    margin:0
 }
 export default StyleButton;

@@ -30,6 +30,22 @@ const logout = ()=>{
     
 }
 
+const addData = (formdata)=>{
+   try{
+     const formData  = new FormData();
+     formData.append("name",formdata.name)
+     formData.append("prie",formdata.price)
+     formData.append("quantity",formdata.quantity)
+     formData.append("desc",formdata.desc)
+     formData.append("file",formdata.file)
+
+     console.log(formData);
+   }catch(err){
+    console.log(err);
+   }
+
+}
+
 const GlobalContext = ({children}) => {
     const [loggedUser,setLoggedUser] = useState();  
 
@@ -41,7 +57,7 @@ const GlobalContext = ({children}) => {
 
     return (
        
-       <Context.Provider value={ { login,loggedUser,setLoggedUser,logout}  }>
+       <Context.Provider value={ { login,loggedUser,setLoggedUser,logout,addData}  }>
          {loggedUser && children}
        </Context.Provider>
 

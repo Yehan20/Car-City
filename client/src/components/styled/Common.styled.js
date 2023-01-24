@@ -14,6 +14,7 @@ export const Split = styled.div`
    border:0;
    flex-grow:1;
  }
+ gap:10px;
   
 `
 export const StyledError=styled.div`
@@ -100,4 +101,8 @@ export const StyledAdminNav = styled.nav`
    gap:1em;
   }
   padding:0.5em;
+`
+export const StyledAdminModel = styled.div`
+  border-radius:0;
+  
 `

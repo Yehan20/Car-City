@@ -9,6 +9,7 @@ import './css/index.css';
 import PrivateRoute from './private/PrivateRoute';
 import Footer from './components/common/footer';
 import Error from './components/common/error';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
  
