@@ -44,7 +44,7 @@ const Login = () => {
         <LoginMain>
             <LoginBox>
                 <h2>Login</h2>
-                <form  method='post' encType="application/x-www-form-urlencoded" onSubmit={handleSubmit}  >
+                <form   onSubmit={handleSubmit}  >
                     <div>
                     <label htmlFor="username">UserName</label>
                     <input type="text" id='username' name='username' onChange={(e)=>handleChange(e.target)} />

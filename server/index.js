@@ -3,24 +3,20 @@ import mongoose from "mongoose";
 import adminRoutes from "./routes/admin.route.js";
 import cors from 'cors'
 
-import multer from "multer";
 
 
 const app = express();
 
-const useFormData = multer()
 
-// const storage = multer.diskStorage({
-//     destination:'test/'
-// })
 
-// const uploads = multer({
-//     storage:storage
-// })
-
+app.use(express.urlencoded({extended:true}));
 app.use(cors())
 app.use(express.json())
-app.use(useFormData.none())
+app.use(express.static('./public'))
+
+
+
+
 
 
 app.use('/admin',adminRoutes)

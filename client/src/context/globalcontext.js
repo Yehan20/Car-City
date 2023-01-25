@@ -30,20 +30,25 @@ const logout = ()=>{
     
 }
 
-const addData = (formdata)=>{
+const addData = async (formdata)=>{
+  console.log("forn",formdata)
+    const formData  = new FormData();
+    formData.append("name",formdata.name)
+    formData.append("prie",formdata.price)
+    formData.append("quantity",formdata.amount)
+    formData.append("desc",formdata.desc)
+    formData.append("file",formdata.file)
+
+    console.log(formData)
+
    try{
-     const formData  = new FormData();
-     formData.append("name",formdata.name)
-     formData.append("prie",formdata.price)
-     formData.append("quantity",formdata.quantity)
-     formData.append("desc",formdata.desc)
-     formData.append("file",formdata.file)
-
-     console.log(formData);
+      const  addCar  =  await axios.post('http://localhost:3001/admin/add',formData) //http://localhost:3001/admin/login
+      return addCar
+    //  console.log(formData);
    }catch(err){
-    console.log(err);
+     return err
    }
-
+     
 }
 
 const GlobalContext = ({children}) => {

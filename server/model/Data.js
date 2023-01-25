@@ -14,7 +14,12 @@ const CarSchema =  new  mongoose.Schema({
       required:true,
 
     },
-    quantity:{
+    path:{
+        type:String,
+        required:true
+    },
+
+    amount:{
       type:Number,
       required:true,
       validate:{

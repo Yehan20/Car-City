@@ -1,22 +1,39 @@
 import { carModel} from '../model/Data.js'
 import adminModel from '../model/Admin.js'
-import formidable from "formidable";
 
-const addCar = async (req, res) => {
-    try {
-        const car = await carModel.create({
 
-            name: "Dugati",
-            description: "WOw",
-            price: 4000,
-            quantity: 333
-        })
-        console.log('car', car)
-        res.json(car)
+const addCar = async (req, res,err) => {
+      let host = req.get('host');
+    //   console.log(req)
+ 
+        console.log("files",req.file)
+        if(!err){
+            console.log("req",req.file)
+      
+        }
+        else{
+            console.log(err)
+        }
+        console.log(req.body)
+  
+  
+    // console.log("req",req.file)
+    // try {
+    //     // const car = await carModel.create({
 
-    } catch (error) {
-        console.log(error);
-    }
+    //     //     name: "Dugati",
+    //     //     description: "WOw",
+    //     //     price: 4000,
+    //     //     quantity: 333
+    //     // })
+    //     // console.log('car', car)
+    //     // res.json(car)
+    //     res.send(req.body)
+
+    // } catch (error) {
+    //     res(error.message);
+    // }
+    
 
 }
 
