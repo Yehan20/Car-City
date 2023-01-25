@@ -1,15 +1,42 @@
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Modal} from 'react-bootstrap'
 import {Container, Split, StyledAdminHome, StyledAdminNav} from "../styled/Common.styled";
 import StyleButton from '../styled/Buttons.styled'
 import {useGlobalContext} from "../../context/globalcontext";
-
+import {BiEdit} from 'react-icons/bi'
+import {AiFillDelete} from 'react-icons/ai'
 
 const AdminHome = () => {
+      const {getProducts} = useGlobalContext()
+      const [products,setProducts]=useState([]);
+      
+      useEffect(()=>{
+            getProducts().then((data)=>{
+               setProducts(data)
+           }).catch(e=>console.log(e))
+      },[])
 
         return(< StyledAdminHome > <Container>
             <h2>Your Products</h2>
+            <Split>
+                {
+                   products.map((product)=>{
+                    const {name,price,amount,path,_id} = product
+                    return <article key={_id}>
+                         <h3>{name}</h3>
+                         <img src={"http://"+path} alt={name} />
+                         <p>RS: {price}</p>
+                         <h4>In Stock: <span>{amount}</span></h4>
+                         <div>
+                        <StyleButton  width={'50px'}><BiEdit color={"green"}/></StyleButton> 
+                         <StyleButton width={'50px'} ><AiFillDelete color={"red"}/> </StyleButton>
+                       </div>
+                    </article>
+                   })
+
+                }
+            </Split>
         </Container>
     </StyledAdminHome>
     );
@@ -46,6 +73,7 @@ export const AdminNav = () => {
 
 const AddModel = ({show, handleClose}) => {
     const {addData} = useGlobalContext()
+    const [isAdded, setisAdded] = useState(false);
     const [carData, setCarData] = useState({
         name: '',
         amount: '',
@@ -56,9 +84,14 @@ const AddModel = ({show, handleClose}) => {
 
     const handleClick = async (e) => {
         e.preventDefault();
-        console.log(carData)
         const result = await addData(carData);
-        console.log(result)
+
+        if (result.success) {
+            setisAdded(true)
+            handleClose();
+      
+           
+        }
     }
     const handleSubmit = (target) => {
         const name = target.name
@@ -76,6 +109,18 @@ const AddModel = ({show, handleClose}) => {
             [name]: file
         })
     }
+    if (isAdded) {
+        return <Modal show={isAdded}>
+            <Modal.Header>
+                <h3>Product added</h3>
+            </Modal.Header>
+            <StyleButton width={'200px'}
+                margin={'20px'}
+                onClick={()=>setisAdded(false)}>
+                Ok
+            </StyleButton>
+        </Modal>
+    }
     return (
         <Modal show={show}
             onHide={handleClose}>
@@ -83,8 +128,9 @@ const AddModel = ({show, handleClose}) => {
                 <h3>Add a Car</h3>
             </Modal.Header>
             <Modal.Body>
-              
-                <form encType="mulitpart/form-data" onSubmit={handleClick}>
+
+                <form encType="mulitpart/form-data"
+                    onSubmit={handleClick}>
                     <Split>
                         <div>
                             <label>Name</label>
@@ -140,8 +186,7 @@ const AddModel = ({show, handleClose}) => {
                             onClick={handleClose}>
                             Close
                         </StyleButton>
-                        <StyleButton 
-                            width={'200px'}
+                        <StyleButton width={'200px'}
                             margin={'20px'}
                             variant="primary">
                             Add Car

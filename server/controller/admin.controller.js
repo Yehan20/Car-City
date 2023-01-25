@@ -2,37 +2,23 @@ import { carModel} from '../model/Data.js'
 import adminModel from '../model/Admin.js'
 
 
-const addCar = async (req, res,err) => {
-      let host = req.get('host');
-    //   console.log(req)
- 
-        console.log("files",req.file)
-        if(!err){
-            console.log("req",req.file)
-      
-        }
-        else{
-            console.log(err)
-        }
-        console.log(req.body)
+const addCar = async (req, res) => {
   
-  
-    // console.log("req",req.file)
-    // try {
-    //     // const car = await carModel.create({
-
-    //     //     name: "Dugati",
-    //     //     description: "WOw",
-    //     //     price: 4000,
-    //     //     quantity: 333
-    //     // })
-    //     // console.log('car', car)
-    //     // res.json(car)
-    //     res.send(req.body)
-
-    // } catch (error) {
-    //     res(error.message);
-    // }
+    try {
+        let path = `${req.get('host')}/imgs/${req.file.filename}`
+        const car = await carModel.create({
+            name:req.body.name,
+            description:req.body.desc,
+            price:req.body.price,
+            path:path,
+            amount:req.body.quantity,
+        
+        })
+        res.status(200).json({success:true})
+        console.log(car)
+     } catch (error) {
+          console.log(error)
+     } 
     
 
 }

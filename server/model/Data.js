@@ -24,7 +24,7 @@ const CarSchema =  new  mongoose.Schema({
       required:true,
       validate:{
            validator:function(v){ 
-            let regex=/^[1-9]{1,3}$/;
+            let regex=/^[0-9]{1,3}$/;
             return regex.test(v)
         },
         message:props=> `This ${props.value} is not valid`

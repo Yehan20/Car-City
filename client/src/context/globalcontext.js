@@ -34,7 +34,7 @@ const addData = async (formdata)=>{
   console.log("forn",formdata)
     const formData  = new FormData();
     formData.append("name",formdata.name)
-    formData.append("prie",formdata.price)
+    formData.append("price",formdata.price)
     formData.append("quantity",formdata.amount)
     formData.append("desc",formdata.desc)
     formData.append("file",formdata.file)
@@ -43,12 +43,17 @@ const addData = async (formdata)=>{
 
    try{
       const  addCar  =  await axios.post('http://localhost:3001/admin/add',formData) //http://localhost:3001/admin/login
-      return addCar
+      return addCar.data
     //  console.log(formData);
    }catch(err){
      return err
    }
      
+}
+
+const getProducts = async()=>{
+  const products = await axios.get('http://localhost:3001/admin/showcars')
+  return products.data;
 }
 
 const GlobalContext = ({children}) => {
@@ -62,7 +67,7 @@ const GlobalContext = ({children}) => {
 
     return (
        
-       <Context.Provider value={ { login,loggedUser,setLoggedUser,logout,addData}  }>
+       <Context.Provider value={ { login,loggedUser,setLoggedUser,logout,addData,getProducts}  }>
          {loggedUser && children}
        </Context.Provider>
 

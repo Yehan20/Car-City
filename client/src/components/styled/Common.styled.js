@@ -9,6 +9,7 @@ export const Container = styled.div`
 `
 export const Split = styled.div`
   display:flex;
+//   flex-wrap:wrap;
   button{
    background:transparent;
    border:0;
@@ -41,6 +42,7 @@ export const StyledError=styled.div`
 export const StyledHeader = styled.header`
   background-color:${({theme})=>theme.secondaryClr};
   position:fixed;
+  z-index:99;
   left:0;
   top:0;
   width:100%;
@@ -89,6 +91,60 @@ export const StyledAdminHome = styled.div`
    h2{
       text-align:center;
    }
+   h3{
+      font-size:1.2rem;
+      text-align:center;
+      word-break: break-all;
+      font-family:var(--ff-sub);
+      font-weight:600;
+   }
+   div{
+      padding:1em 1em;
+      gap:2em;
+      justify-content:center;
+      align-content:flex-start;
+      flex-wrap:wrap;
+   }
+   article{
+      transition:all 250ms ease-in;
+      max-width:230px;
+      width:100%;
+      // box-shadow:${({theme})=>theme.cstBoxShadow};
+      padding:2em;
+      background-color:#fff;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:0.5em;
+      cursor:pointer;
+   
+      &:hover{
+         box-shadow:${({theme})=>theme.cstBoxShadow};
+      }
+      &:hover img{
+         transform:scale(1.05);
+      }
+      div{
+         padding:0;
+         display:flex;
+         justify-content:center!important;
+         button{
+            background:transparent !important;
+            outline:0 !important;
+         }
+         
+      }
+      img{
+         height:150px;
+         max-width:200px;
+         transition:all 250ms ease-in;
+      }
+      h4 span{
+       
+       color:${({theme})=>theme.secondaryClr};
+      }
+   }
+
 `
 export const StyledAdminNav = styled.nav`
   background-color:white;

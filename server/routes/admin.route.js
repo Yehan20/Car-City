@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
     filename:function(req,file,cb){
         // console.log('ram')
         // console.log(file)
-          cb(null,file.fieldname +'.'+Date.now() + path.extname(file.originalname))
+          cb(null,file.fieldname +'.'+Date.now() +  path.extname(file.originalname).toLowerCase())
     }
 })
 

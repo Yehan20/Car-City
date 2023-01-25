@@ -39,6 +39,7 @@ const Global = createGlobalStyle`
      div{
   
       width:100%;
+   
      
     }
    label{
