@@ -86,7 +86,7 @@ export const StyledFooter = styled.footer`
 export const StyledAdminHome = styled.div`
    
    min-height:100vh;
-   padding-top:7em;
+   padding-top:3.5em;
    font-family:var(--ff-main);
    h2{
       text-align:center;
@@ -107,7 +107,7 @@ export const StyledAdminHome = styled.div`
    }
    article{
       transition:all 250ms ease-in;
-      max-width:230px;
+      max-width:232px;
       width:100%;
       // box-shadow:${({theme})=>theme.cstBoxShadow};
       padding:2em;

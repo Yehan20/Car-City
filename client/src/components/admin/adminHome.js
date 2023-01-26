@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {Modal} from 'react-bootstrap'
 import {Container, Split, StyledAdminHome, StyledAdminNav} from "../styled/Common.styled";
 import StyleButton from '../styled/Buttons.styled'
@@ -7,53 +7,36 @@ import {useGlobalContext} from "../../context/globalcontext";
 import {BiEdit} from 'react-icons/bi'
 import {AiFillDelete} from 'react-icons/ai'
 
-const AdminHome = () => {
-      const {getProducts} = useGlobalContext()
-      const [products,setProducts]=useState([]);
-      
-      useEffect(()=>{
-            getProducts().then((data)=>{
-               setProducts(data)
-           }).catch(e=>console.log(e))
-      },[])
 
-        return(< StyledAdminHome > <Container>
-            <h2>Your Products</h2>
-            <Split>
-                {
-                   products.map((product)=>{
-                    const {name,price,amount,path,_id} = product
-                    return <article key={_id}>
-                         <h3>{name}</h3>
-                         <img src={"http://"+path} alt={name} />
-                         <p>RS: {price}</p>
-                         <h4>In Stock: <span>{amount}</span></h4>
-                         <div>
-                        <StyleButton  width={'50px'}><BiEdit color={"green"}/></StyleButton> 
-                         <StyleButton width={'50px'} ><AiFillDelete color={"red"}/> </StyleButton>
-                       </div>
-                    </article>
-                   })
-
-                }
-            </Split>
-        </Container>
-    </StyledAdminHome>
-    );
-}
-
-export const AdminNav = () => {
+const AdminHome = () => { // const {products,loading}=useFetch('http://localhost:3001/admin/showcars');
+    const {getProducts} = useGlobalContext()
+    const [products, setProducts] = useState([]);
     const [show, setShow] = useState(false);
+    const [isAdded, setisAdded] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const get = useCallback(async () => {
+        const data = await getProducts()
+        return data
+    },[getProducts])
+
+
+    useEffect(() => {
+       setProducts(get())
+    }, [get,isAdded])
+
 
     const navigate = useNavigate()
     const logout = () => {
         localStorage.removeItem('user');
         navigate('/')
     }
-    return <StyledAdminNav>
+
+
+    return(< StyledAdminHome >
+     <StyledAdminNav>
         <ul>
             <li>
                 <StyleButton onClick={handleShow}>Add Car</StyleButton>
@@ -67,13 +50,79 @@ export const AdminNav = () => {
         </ul>
         <AddModel show={show}
             handleClose={handleClose}
-            handleShow={handleShow}/>
+            handleShow={handleShow}
+            isAdded={isAdded}
+            setisAdded={setisAdded}/>
     </StyledAdminNav>
+    <Container>
+
+        <h2>Your Products</h2>
+        <Split> {
+            products && products.map((product) => {
+                const {
+                    name,
+                    price,
+                    amount,
+                    path,
+                    _id
+                } = product
+                return <article key={_id}>
+                    <h3>{name}</h3>
+                    <img src={
+                            "http://" + path
+                        }
+                        alt={name}/>
+                    <p>RS: {price}</p>
+                    <h4>In Stock:
+                        <span>{amount}</span>
+                    </h4>
+                    <div>
+                        <StyleButton width={'50px'}><BiEdit color={"green"}/></StyleButton>
+                        <StyleButton width={'50px'}><AiFillDelete color={"red"}/>
+                        </StyleButton>
+                    </div>
+                </article>
+        })
+        } </Split>
+    </Container>
+</StyledAdminHome>);
 }
 
-const AddModel = ({show, handleClose}) => {
+// export const AdminNav = () => {
+//     const [show, setShow] = useState(false);
+
+//     const handleClose = () => setShow(false);
+//     const handleShow = () => setShow(true);
+
+//     const navigate = useNavigate()
+//     const logout = () => {
+//         localStorage.removeItem('user');
+//         navigate('/')
+//     }
+//     useEffect(() => {
+//         console.log('adming render')
+//     })
+//     return <StyledAdminNav>
+//         <ul>
+//             <li>
+//                 <StyleButton onClick={handleShow}>Add Car</StyleButton>
+//             </li>
+//             <li>
+//                 <StyleButton>Orders</StyleButton>
+//             </li>
+//             <li>
+//                 <StyleButton onClick={logout}>Logout</StyleButton>
+//             </li>
+//         </ul>
+//         <AddModel show={show}
+//             handleClose={handleClose}
+//             handleShow={handleShow}/>
+//     </StyledAdminNav>
+// }
+
+const AddModel = ({show, handleClose, isAdded, setisAdded}) => {
     const {addData} = useGlobalContext()
-    const [isAdded, setisAdded] = useState(false);
+
     const [carData, setCarData] = useState({
         name: '',
         amount: '',
@@ -89,8 +138,8 @@ const AddModel = ({show, handleClose}) => {
         if (result.success) {
             setisAdded(true)
             handleClose();
-      
-           
+
+
         }
     }
     const handleSubmit = (target) => {
@@ -116,7 +165,9 @@ const AddModel = ({show, handleClose}) => {
             </Modal.Header>
             <StyleButton width={'200px'}
                 margin={'20px'}
-                onClick={()=>setisAdded(false)}>
+                onClick={
+                    () => setisAdded(false)
+            }>
                 Ok
             </StyleButton>
         </Modal>
