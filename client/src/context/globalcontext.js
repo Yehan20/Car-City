@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from 'axios'
 import {Navigate } from "react-router-dom";
 
+
 const Context = React.createContext();
 
 const login= async(userName,password)=>{
@@ -56,9 +57,22 @@ const getProducts = async()=>{
   return products.data;
 }
 
-const GlobalContext = ({children}) => {
-    const [loggedUser,setLoggedUser] = useState();  
+const increaseItem = (_id,products)=>{
+    const modifiedProducts = products.map((product)=>{
+      if(product._id===_id){
+          product.selectedAmount +=1;
+          return product;     
+      }
+      return product
+    
+  })
+ return modifiedProducts
+}
 
+const GlobalContext = ({children}) => {
+ 
+    const [loggedUser,setLoggedUser] = useState();  
+  
     useEffect(()=>{
       console.log('use effect ran');
        setLoggedUser(getLoggedUser())
@@ -67,7 +81,7 @@ const GlobalContext = ({children}) => {
 
     return (
        
-       <Context.Provider value={ { login,loggedUser,setLoggedUser,logout,addData,getProducts}  }>
+       <Context.Provider value={ { login,loggedUser,setLoggedUser,logout,addData,getProducts,increaseItem}  }>
          {loggedUser && children}
        </Context.Provider>
 

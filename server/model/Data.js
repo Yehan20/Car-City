@@ -30,6 +30,11 @@ const CarSchema =  new  mongoose.Schema({
         message:props=> `This ${props.value} is not valid`
       }
     },
+    selectedAmount:{
+      type:Number,
+      required:true,
+      default:0,
+    },
     dateOfCreation:{
         type:Date,
         imutable:true,

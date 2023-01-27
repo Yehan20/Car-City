@@ -13,7 +13,7 @@ const Header = () => {
  
     return ( <StyledHeader>
           <h1><AiFillCar/> Car City</h1>
-          {pathname.includes('admin')?'': <CartHeader/>}
+          {/* {pathname.includes('admin')?'': <CartHeader/>} */}
           {/* {pathname.includes('/admin/home')?<AdminNav/>:'' } */}
     </StyledHeader> );
 }

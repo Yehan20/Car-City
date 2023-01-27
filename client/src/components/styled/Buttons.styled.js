@@ -4,7 +4,11 @@ const StyleButton=styled.button`
    background-color: ${function(props){
        return props.theme.secondaryClr
    }} !important;
-   
+
+   &:disabled{
+    background-color:orange !important;
+    outline:1px solid orange;
+   }
    display:${props=>props.display};
    margin:${props=>props.margin};
    padding:0.5em 1em;

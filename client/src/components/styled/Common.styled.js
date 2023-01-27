@@ -143,6 +143,7 @@ export const StyledAdminHome = styled.div`
        
        color:${({theme})=>theme.secondaryClr};
       }
+
    }
 
 `

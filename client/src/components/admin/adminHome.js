@@ -1,31 +1,35 @@
 import {useNavigate} from "react-router-dom";
-import {useCallback, useEffect, useState} from "react";
+import {useState} from "react";
 import {Modal} from 'react-bootstrap'
 import {Container, Split, StyledAdminHome, StyledAdminNav} from "../styled/Common.styled";
 import StyleButton from '../styled/Buttons.styled'
 import {useGlobalContext} from "../../context/globalcontext";
 import {BiEdit} from 'react-icons/bi'
 import {AiFillDelete} from 'react-icons/ai'
+import { useFetch } from "../custom-hooks/usefetch";
 
 
-const AdminHome = () => { // const {products,loading}=useFetch('http://localhost:3001/admin/showcars');
-    const {getProducts} = useGlobalContext()
-    const [products, setProducts] = useState([]);
+const AdminHome = () => { 
+   
+    // const {getProducts} = useGlobalContext()
+    // const [products, setProducts] = useState([]);
     const [show, setShow] = useState(false);
     const [isAdded, setisAdded] = useState(false);
+
+    const {products,loading}=useFetch({url:'http://localhost:3001/admin/showcars',isAdded:isAdded});
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const get = useCallback(async () => {
-        const data = await getProducts()
-        return data
-    },[getProducts])
+    // const get = useCallback(async () => {
+    //     const data = await getProducts()
+    //     setProducts(data)
+    // }, [getProducts])
 
 
-    useEffect(() => {
-       setProducts(get())
-    }, [get,isAdded])
+    // useEffect(() => {
+    //     get()
+    // }, [get, isAdded])
 
 
     const navigate = useNavigate()
@@ -58,7 +62,7 @@ const AdminHome = () => { // const {products,loading}=useFetch('http://localhost
 
         <h2>Your Products</h2>
         <Split> {
-            products && products.map((product) => {
+            !loading && products.map((product) => {
                 const {
                     name,
                     price,
@@ -137,6 +141,11 @@ const AddModel = ({show, handleClose, isAdded, setisAdded}) => {
 
         if (result.success) {
             setisAdded(true)
+            setCarData({  name: '',
+            amount: '',
+            price: '',
+            desc: '',
+            file: ''})
             handleClose();
 
 
