@@ -57,21 +57,17 @@ const getProducts = async()=>{
   return products.data;
 }
 
-const increaseItem = (_id,products)=>{
-    const modifiedProducts = products.map((product)=>{
-      if(product._id===_id){
-          product.selectedAmount +=1;
-          return product;     
-      }
-      return product
-    
-  })
- return modifiedProducts
-}
+
+
+
+
 
 const GlobalContext = ({children}) => {
  
     const [loggedUser,setLoggedUser] = useState();  
+
+
+
   
     useEffect(()=>{
       console.log('use effect ran');
@@ -81,7 +77,7 @@ const GlobalContext = ({children}) => {
 
     return (
        
-       <Context.Provider value={ { login,loggedUser,setLoggedUser,logout,addData,getProducts,increaseItem}  }>
+       <Context.Provider value={ { login,loggedUser,setLoggedUser,logout,addData,getProducts}  }>
          {loggedUser && children}
        </Context.Provider>
 

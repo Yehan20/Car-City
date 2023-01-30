@@ -11,8 +11,7 @@ import { useFetch } from "../custom-hooks/usefetch";
 
 const AdminHome = () => { 
    
-    // const {getProducts} = useGlobalContext()
-    // const [products, setProducts] = useState([]);
+   
     const [show, setShow] = useState(false);
     const [isAdded, setisAdded] = useState(false);
 
@@ -20,16 +19,6 @@ const AdminHome = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-    // const get = useCallback(async () => {
-    //     const data = await getProducts()
-    //     setProducts(data)
-    // }, [getProducts])
-
-
-    // useEffect(() => {
-    //     get()
-    // }, [get, isAdded])
 
 
     const navigate = useNavigate()

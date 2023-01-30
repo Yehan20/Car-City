@@ -25,6 +25,13 @@ const StyleButton=styled.button`
    }
    flex-grow:0 !important;
 
+   &:disabled{
+    opacity:0.5;
+    background-color: ${function(props){
+        return props.theme.secondaryClr
+    }} !important;
+   }
+
   `
 StyleButton.defaultProps={
     display:'block',

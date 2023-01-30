@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Home from './components/home';
 import Login from './components/admin/login';
-import Header from './components/header';
+import Header from './components/common/header';
 import GlobalContext from './context/globalcontext';
 import { ThemeProvider } from 'styled-components';
 import Global from './components/styled/global.styled';

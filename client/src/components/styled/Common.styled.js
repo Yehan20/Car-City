@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-
+import car from '../../imgs/car.png'
 
 export const Container = styled.div`
    max-width:1140px;
@@ -18,6 +18,61 @@ export const Split = styled.div`
  gap:10px;
   
 `
+export const StyleSuccess = styled.div`
+display:flex;
+justify-content:center;
+flex-direction:column;
+align-items:center;
+justify-content:space-evenly;
+background-image:url('https://media.tenor.com/-SxWP-6u-hEAAAAC/snow-fall.gif');
+opacity:0.8;
+h3{
+   font-size:1.8rem;
+   font-family:var(--ff-sub);
+   margin:0;
+   font-weight:600;
+}
+p{
+   margin:0;
+}
+`
+export const Empty = styled.div`
+   height:200px;
+   display:flex;
+   justify-content:center;
+   align-items:flex-end;
+   background-image:url(${car}) !important;
+   background-size:150px;
+   opacity:0.8;
+   background-repeat:no-repeat;
+   background-position:center center;
+   h3{
+      padding-bottom:2em;
+      color:#ccc;
+      font-weight:600;
+      font-size:1.1rem;
+      font-family:var(--ff-secondary);
+      // text-transform:uppercase;
+   }
+   
+`
+export const NotFoundStyle=styled.div`
+    display:flex;
+    flex-wrap:nowrap !important;
+    flex-direction:column !important;
+    background-image:url(${car});
+    background-repeat:no-repeat;
+    background-size:500px;
+    background-position:center top;
+    text-align:center;
+   
+    align-items:center!important;
+    padding:4em 3em 14em 3em !important;
+    h3{
+      font-size:3rem;
+    }
+`
+
 export const StyledError=styled.div`
    padding-top:15em;
    text-align:center;

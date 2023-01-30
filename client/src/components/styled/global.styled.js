@@ -63,9 +63,60 @@ const Global = createGlobalStyle`
     
     }
    }
+
+   .viewModel{
+    h2{
+      font-family:var(--ff-sub);
+      color:#fff;
+      font-weight:600;
+      margin:0
+    }
+      .modal-footer{
+         border:0;
+         background-color:${({theme})=>theme.background} !important;
+         display:flex;
+         justify-content:space-between;
+      }
+      p{
+        font-size:0.9rem;
+      }
+      .modal-body{
+        img{
+          max-width:370px;
+          height:270px;
+          display:block;
+          margin:0 auto;
+        }
+      }
+      h3{
+        font-size:1rem;
+      }
+      .modal-header{
+        border:0;
+        background-color:${({theme})=>theme.secondaryClr} !important;
+        border-radius:0;
+        padding:0.3em 1em;
+      }
+      .btn-close{
+        background:${({theme})=>theme.secondaryClr} !important;
+        color:#fff;
+        opacity:1;
+        font-family:var(--ff-secondary);
+        font-weight:600;
+        &:before{
+          content:'X';
+          color:#fff;
+          opacity:1;
+          position:relative;
+          top:-10px;
+          font-size:1.4rem;
+          
+        }
+      }
+   }
    
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {

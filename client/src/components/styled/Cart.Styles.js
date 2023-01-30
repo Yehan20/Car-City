@@ -2,19 +2,34 @@ import styled from "styled-components";
 import img from '../../imgs/car.png'
 export const CartHeaderStyled=styled.div`
       background:#fff;
-      padding:1em 7em;
+      padding:1em 7em 2em 7em;
       font-family:var(--ff-main);
       display:flex;
       justify-content:center;
       position:fixed;
       width:100%;
       z-index:99;
-      top:3em !important;
+      top:3.5em !important;
       align-items:center;
       div{
         flex-grow:1;
       }
-  
+     
+      button{
+        position:relative;
+        left:-10px;
+         span{
+          position:absolute;
+          top:-1em; 
+          right:40px;
+          color:red;
+          font-weight:600;
+          
+         }
+         @supports (-moz-appearance:none) {
+          span {    right:20px;} 
+          }
+      }
     
       div:nth-of-type(2){
         justify-content:center;
@@ -134,6 +149,7 @@ export const CartBody=styled.div`{
          height:150px;
          max-width:200px;
          transition:all 250ms ease-in;
+         cursor:zoom-in;
       }
       h4{
         font-size:1.1rem;
@@ -157,4 +173,88 @@ export const CartBody=styled.div`{
         padding:0.2em !important;
         border-radius:0.1em !important;
       }
+}`
+export const MiniCartBody = styled.div`{
+  position:absolute;
+  z-index:999;
+  top:4em;
+  right:10em; 
+  // bottom:1em;  
+  max-width:400px;  
+  width:100%;
+  padding:0 0 1em 0;
+  box-shadow:${({theme})=>theme.cstBoxShadow};
+  border:1px solid #ccc;
+  background-color:#fff;
+  height:350px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between !important;
+
+
+   button{
+    padding:0.2em !important;
+    text-transform:uppercase;
+    font-family:var(--ff-secondary) !important;
+    font-weight:600;
+    margin:0 auto ;
+    border-radius:0.1em;
+    align-self:flex-end;
+    left:0 !important;
+    margin-bottom:5px;
+   }
+
+   aside{
+    overflow-y:auto;
+    overflow-x:hidden;
+    // height:350px;
+  
+   }
+}`
+export const StyledMiniCart  = styled.div`{
+   margin-bottom:auto;
+   flex-grow:0 !important;
+   padding:0.5em !important;
+   align-self:stretch;
+   margin-bottom:0.5em;
+   display:flex; 
+ 
+   &:hover{
+    background-color:${({theme})=>theme.background};
+   }
+   gap:0.5em;
+   align-items:center;
+   div{
+    flex-grow:0;
+    padding:0 !important;
+   }
+   div:nth-of-type(3){
+    width:20% !important;
+  }
+  div:nth-of-type(1){
+    width:20% !important;
+  }
+  div:nth-of-type(4){
+    width:10% !important;
+  }
+   div:nth-of-type(2){
+     width:50% !important;
+   }
+   img{
+    width:120px;
+   }
+   button{
+     display:block;
+     margin-left:auto;
+   
+   }
+   p{
+    margin:0;
+    color:#333;
+    font-size:0.9rem;
+    font-family:var(--main);
+    font-weight:500;
+   }
+
 }`

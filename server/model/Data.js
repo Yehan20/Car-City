@@ -42,32 +42,32 @@ const CarSchema =  new  mongoose.Schema({
     }
 })
 
-const OrderSchema = new mongoose.Schema({
-    items:{
-        type:String,
-        required:true
-    },
-    price:{
-        type:Number,
-        required:true
-    }
-    ,
-    customerName:{
-        firstName:{
-            type:String,
-            required:true
-        },
-        lastname:{
-            type:String,
-            required:true
-        }
-    },
-    address:{
-        street:String,
-        city:String,
-        province:String
-    }
-})
+// const OrderSchema = new mongoose.Schema({
+//     items:{
+//         type:String,
+//         required:true
+//     },
+//     price:{
+//         type:Number,
+//         required:true
+//     }
+//     ,
+//     customerName:{
+//         firstName:{
+//             type:String,
+//             required:true
+//         },
+//         lastname:{
+//             type:String,
+//             required:true
+//         }
+//     },
+//     address:{
+//         street:String,
+//         city:String,
+//         province:String
+//     }
+// })
 
 // Test Virtual
 CarSchema.virtual("id").get(function(){
@@ -76,9 +76,9 @@ CarSchema.virtual("id").get(function(){
 
 const carModel= mongoose.model('car',CarSchema);
 
-const orderModel  = mongoose.model('order',OrderSchema)
+
 
 export {
     carModel,
-    orderModel
+  
 }
