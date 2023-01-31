@@ -5,7 +5,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 
 
-const KEY = dotenv.config().parsed.CONNECTION_URL;
+const KEY = process.env.CONNECTION_URL;
 const app = express();
 //const url = 'mongodb+srv://yehan:yehan1234@carcitycluster.dodfqtz.mongodb.net/CarCity?retryWrites=true&w=majority'
 
