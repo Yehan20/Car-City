@@ -2,10 +2,19 @@ import express from "express";
 import mongoose from "mongoose";
 import adminRoutes from "./routes/admin.route.js";
 import cors from 'cors'
-import dotenv from 'dotenv'
+import  dotenv from 'dotenv'
 
 
-const KEY = process.env.CONNECTION_URL;
+const KEY =function(){
+    if( process.env.CONNECTION_URL===undefined){
+        console.log('wrong')
+        return dotenv.config().parsed.CONNECTION_URL
+    }
+    console.log('run')
+   return  process.env.CONNECTION_URL
+}()
+
+console.log()
 const app = express();
 //const url = 'mongodb+srv://yehan:yehan1234@carcitycluster.dodfqtz.mongodb.net/CarCity?retryWrites=true&w=majority'
 
