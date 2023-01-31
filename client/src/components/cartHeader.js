@@ -14,9 +14,8 @@ import Success from './common/success';
 
 const CartHeader=React.memo(({cart,removeItem,search,setCart,setBlock,showCart,setShowCart})=>{
     const [finalValues,setFinalValues]=useState({totalItems:0,totalPrice:0})
-    // const [showCart,setShowCart] = useState(false)
     const [sucess,setSucess] = useState(false)
-
+    const [animate,setAnimate] = useState(false)
     const updateFinalPrices= useCallback(()=>{
       const totals = cart.reduce((initialValue,cartItem)=>{
             initialValue.totalItems = initialValue.totalItems + cartItem.selectedAmount;
@@ -44,14 +43,24 @@ const CartHeader=React.memo(({cart,removeItem,search,setCart,setBlock,showCart,s
   }
 
 
-    useEffect(()=>{
-     Aos.init()
-    },[])
+
 
     useEffect(()=>{
       const final= updateFinalPrices();
+      setAnimate(true)
+      setTimeout(()=>{
+         setAnimate(false)
+      },1000)
       setFinalValues({...final})
+
+      
+    
    },[cart,updateFinalPrices])
+
+   useEffect(()=>{
+    Aos.init()
+    setAnimate(false)
+   },[])
 
 
 
@@ -72,9 +81,9 @@ const CartHeader=React.memo(({cart,removeItem,search,setCart,setBlock,showCart,s
                 <h3>Total Items : <span>{finalValues.totalItems}</span> </h3>
                 <h3>Total amount: RS <span>{finalValues.totalPrice}</span> </h3>
             </div>
-            <button  onClick={()=>setShowCart(!showCart)}>
+            <button className={animate?'hvr-buzz-out':''}  onClick={()=>setShowCart(!showCart)}>
              <span>{finalValues.totalItems}</span>   
-             <HiShoppingCart  size={'40px'} color={'red'} style={{display:'block',marginRight:'auto'}}/>
+             <HiShoppingCart  size={'40px'} color={'red'} style={{display:'block',margin:'0 auto'}}/>
              </button>
              { showCart &&  <MiniCartBody   data-aos={"fade-up"}>
              {sucess && <Success/>} 

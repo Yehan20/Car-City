@@ -203,7 +203,7 @@ const Home = () => {
                          
                          const {  name,  price,  amount,  path,  _id, selectedAmount   } = product
                        
-                        return  <article key={_id} data-aos={"fade-up"} data-aos-duration={"2500"}>
+                        return  <article key={_id} data-aos={"fade-up"} data-aos-duration={"1000"}>
                         <h3>{name}</h3>
                         <img onClick={()=>handleShow(_id)} src={
                                 "http://" + path

@@ -4,8 +4,6 @@ import {Modal} from 'react-bootstrap'
 import {Container, Split, StyledAdminHome, StyledAdminNav} from "../styled/Common.styled";
 import StyleButton from '../styled/Buttons.styled'
 import {useGlobalContext} from "../../context/globalcontext";
-import {BiEdit} from 'react-icons/bi'
-import {AiFillDelete} from 'react-icons/ai'
 import { useFetch } from "../custom-hooks/usefetch";
 
 
@@ -33,9 +31,6 @@ const AdminHome = () => {
         <ul>
             <li>
                 <StyleButton onClick={handleShow}>Add Car</StyleButton>
-            </li>
-            <li>
-                <StyleButton>Orders</StyleButton>
             </li>
             <li>
                 <StyleButton onClick={logout}>Logout</StyleButton>
@@ -69,11 +64,6 @@ const AdminHome = () => {
                     <h4>In Stock:
                         <span>{amount}</span>
                     </h4>
-                    <div>
-                        <StyleButton width={'50px'}><BiEdit color={"green"}/></StyleButton>
-                        <StyleButton width={'50px'}><AiFillDelete color={"red"}/>
-                        </StyleButton>
-                    </div>
                 </article>
         })
         } </Split>

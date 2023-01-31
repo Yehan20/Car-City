@@ -11,10 +11,83 @@ export const CartHeaderStyled=styled.div`
       z-index:99;
       top:3.5em !important;
       align-items:center;
+
+      @media (min-width: 992px) and (max-width: 1199px) {
+        top:3em;
+        padding:1em 2em 2em 2em;
+        button {
+          span{
+            right:45px !important;
+          }
+          @supports (-moz-appearance:none) {
+            span {    right:2vh !important;} 
+
+            }
+
+        }
+
+      }
+      @media (min-width: 768px) and (max-width: 992px) {
+        top:3em !important;
+        padding:1em 1em 2em 1em;
+        h2{
+          padding:0 !important; 
+        }
+        input[type="text"]{
+          max-width:280px !important;
+        }
+        div{
+          padding-left:0 !important;
+        }
+
+        button {
+          span{
+            right:35px !important;
+          }
+          @supports (-moz-appearance:none) {
+            span {    right:15% !important;} 
+            }
+
+        }
+
+      }
+      @media (max-width:767px){
+        padding:1em 1em 2em 1em;
+        flex-direction:column;
+        gap:2em;
+        top:3em !important;
+        h2{
+          padding:0 !important;
+          display:none !important;
+        }
+        input[type="text"]{
+          max-width:280px !important;
+        }
+        div{
+          padding-left:0 !important;
+        }
+
+        button {
+          span{
+            right:-20px !important;
+          }
+          @supports (-moz-appearance:none) {
+            span {    right:-10px !important;} 
+            }
+
+        }
+
+      }
+
+
+      @media (min-width: 1600px) {
+        padding: 1em 16em 2em 18em;
+      }
+
       div{
         flex-grow:1;
       }
-     
+      
       button{
         position:relative;
         left:-10px;
@@ -91,7 +164,14 @@ export const CartBody=styled.div`{
     background-repeat:no-repeat;
     background-size:200px;
     background-position:center;
-    padding-top:7em;
+    padding-top:8em;
+    @media screen and (max-width: 767px) {
+       padding-top:13em;
+    }
+    @media (min-width: 1600px) {
+
+     }
+
     h1{
       text-align:center;
       font-family:var(--ff-main);
@@ -115,7 +195,7 @@ export const CartBody=styled.div`{
       max-width:232px;
       width:100%;
       // box-shadow:${({theme})=>theme.cstBoxShadow};
-      padding:2em;
+      padding:2em 1em;
       background-color:#fff;
       display:flex;
       flex-direction:column;
@@ -187,6 +267,48 @@ export const MiniCartBody = styled.div`{
   border:1px solid #ccc;
   background-color:#fff;
   height:350px;
+  @media (min-width: 992px) and (max-width: 1199px) {
+
+    right:4em !important; 
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+
+    right:4em !important; 
+  }
+  
+  @media (max-width:767px){
+    top:11em !important;
+    right:0 !important; 
+    left:20% !important; 
+    
+    max-width:350px;
+    button{
+      width:200px !important;
+    }
+    div button {
+      width:auto !important;
+    }
+  }
+  @media (max-width:450px){
+        
+    max-width:320px;
+    top:11em !important;
+    right:0 !important; 
+    left:5% !important; 
+ 
+  }
+  @media (max-width:340px){
+        
+    max-width:300px;
+    top:11em !important;
+    right:0 !important; 
+    left:3% !important; 
+ 
+  }
+
+  @media (min-width:1600px){
+    right:20em; 
+  }
 
   display:flex;
   flex-direction:column;
@@ -219,6 +341,15 @@ export const StyledMiniCart  = styled.div`{
    align-self:stretch;
    margin-bottom:0.5em;
    display:flex; 
+   @media (max-width:767px){
+    p{
+      font-size:0.8rem !important;
+    }
+    img{
+      80px !important;
+    }
+ 
+  }
  
    &:hover{
     background-color:${({theme})=>theme.background};

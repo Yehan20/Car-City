@@ -6,6 +6,10 @@ export const Container = styled.div`
    width:100%;
    margin:1em auto;
    padding:1em;
+   @media (min-width: 1600px) {
+      max-width:1500px;
+    }
+
 `
 export const Split = styled.div`
   display:flex;
@@ -35,6 +39,16 @@ h3{
 p{
    margin:0;
 }
+@media (max-width:340px){
+   h3{
+      font-size:1.1rem;
+   
+   }
+        
+  p{
+   font-size:0.8rem;
+  }
+ }
 `
 export const Empty = styled.div`
    height:200px;
@@ -44,16 +58,29 @@ export const Empty = styled.div`
    background-image:url(${car}) !important;
    background-size:150px;
    opacity:0.8;
+
+   @media (min-width: 1600px) { 
+      h3{
+         padding-bottom:0 !important;
+      }
+   }
+  
    background-repeat:no-repeat;
    background-position:center center;
    h3{
-      padding-bottom:2em;
+      padding-bottom:0em;
       color:#ccc;
       font-weight:600;
-      font-size:1.1rem;
+      font-size:2rem;
       font-family:var(--ff-secondary);
       // text-transform:uppercase;
    }
+   @media screen and (max-width: 767px) {
+       h3{
+         font-size:1.1rem;
+       }
+   }
+
    
 `
 export const NotFoundStyle=styled.div`
@@ -71,10 +98,18 @@ export const NotFoundStyle=styled.div`
     h3{
       font-size:3rem;
     }
+    @media screen and (max-width: 767px) {
+      background-size:200px;
+      background-position:center bottom;
+      h3{
+         font-size:2rem;
+       }
+    }
+
 `
 
 export const StyledError=styled.div`
-   padding-top:15em;
+   padding-top:8em;
    text-align:center;
    font-family:var(--ff-sub);
    color:${({theme})=>theme.secondaryClr};
