@@ -11,7 +11,7 @@ import { useCallback } from "react";
 import CartHeader from "./cartHeader";
 import {Modal} from 'react-bootstrap'
 import NotFound from './common/notfound';
-
+import Loader from '../imgs/loader.gif'
 
 const Home = () => {
 
@@ -198,7 +198,8 @@ const Home = () => {
             <Container> {/* <h1>Products</h1> */}
                 {match && <NotFound/>}
                 <Split>
-                    {products.length===0 && <h2>Loading</h2>} 
+                    {products.length===0 && <div>
+                        <h3>Loading</h3> <img src={Loader} alt="loading" /> </div>} 
                     { products  && products.map((product) => {
                          
                          const {  name,  price,  amount,  path,  _id, selectedAmount   } = product

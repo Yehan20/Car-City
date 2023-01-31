@@ -5,7 +5,7 @@ import {Container, Split, StyledAdminHome, StyledAdminNav} from "../styled/Commo
 import StyleButton from '../styled/Buttons.styled'
 import {useGlobalContext} from "../../context/globalcontext";
 import { useFetch } from "../custom-hooks/usefetch";
-
+import Loader from '../../imgs/loader.gif'
 
 const AdminHome = () => { 
    
@@ -46,7 +46,10 @@ const AdminHome = () => {
 
         <h2>Your Products</h2>
         <Split> 
-            {loading && <h2>Loading</h2>}
+            {loading && <div>
+                <h2>Loading</h2>
+                <img src={Loader} alt='loading' />
+                </div>}
             {
             !loading && products.map((product) => {
                 const {
