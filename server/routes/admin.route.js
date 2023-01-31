@@ -9,6 +9,7 @@ const useFormData = multer();
 
 const storage = multer.diskStorage({
     destination:'./public/imgs/',
+    // ./public/imgs/
     filename:function(req,file,cb){
         // console.log('ram')
         // console.log(file)

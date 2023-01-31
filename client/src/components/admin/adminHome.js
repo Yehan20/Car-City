@@ -13,7 +13,7 @@ const AdminHome = () => {
     const [show, setShow] = useState(false);
     const [isAdded, setisAdded] = useState(false);
 
-    const {products,loading}=useFetch({url:'http://localhost:3001/admin/showcars',isAdded:isAdded});
+    const {products,loading}=useFetch({url:'https://carcityserver.cyclic.app/admin/showcars',isAdded:isAdded});
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -45,7 +45,9 @@ const AdminHome = () => {
     <Container>
 
         <h2>Your Products</h2>
-        <Split> {
+        <Split> 
+            {loading && <h2>Loading</h2>}
+            {
             !loading && products.map((product) => {
                 const {
                     name,

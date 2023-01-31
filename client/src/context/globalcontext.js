@@ -53,7 +53,7 @@ const addData = async (formdata)=>{
 }
 
 const getProducts = async()=>{
-  const products = await axios.get('http://localhost:3001/admin/showcars')
+  const products = await axios.get('https://carcityserver.cyclic.app/admin/showcars')
   return products.data;
 }
 

@@ -189,7 +189,7 @@ const Home = () => {
          setProducts(modifiedProducts)
      }  
 
-
+     console.log("hello",products)
     return (
         <>
         <CartHeader  removeItem={removeItem} search={search} setCart={setCart}  setBlock={setBlock} cart={cart}
@@ -198,7 +198,7 @@ const Home = () => {
             <Container> {/* <h1>Products</h1> */}
                 {match && <NotFound/>}
                 <Split>
-                     
+                    {products.length===0 && <h2>Loading</h2>} 
                     { products  && products.map((product) => {
                          
                          const {  name,  price,  amount,  path,  _id, selectedAmount   } = product
