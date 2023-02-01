@@ -3,19 +3,17 @@ import 'aos/dist/aos.css';
 import {CartBody} from "./styled/Cart.Styles";
 import {Container, Split} from "./styled/Common.styled";
 import { useState } from "react";
-import { useGlobalContext } from "../context/globalcontext";
 import {HiOutlinePlusCircle, HiOutlineMinusCircle} from 'react-icons/hi'
 import StyleButton from './styled/Buttons.styled'
 import { useEffect } from "react";
-import { useCallback } from "react";
 import CartHeader from "./cartHeader";
 import {Modal} from 'react-bootstrap'
 import NotFound from './common/notfound';
-import Loader from '../imgs/loader.gif'
+import { data } from './data/data';
 
 const Home = () => {
 
-    const{getProducts} = useGlobalContext()
+
     const [products,setProducts] = useState([]);
     const [cart,setCart] = useState([])
 
@@ -35,27 +33,10 @@ const Home = () => {
     };
 
 
-    const get = useCallback(async()=>{
-      
-        //localStorage.setItem("items",JSON.stringify(data));   
-        if(localStorage.getItem("items"))  {
-            const items = JSON.parse(localStorage.getItem("items"));
-
-            setProducts(items)
-            return 
-        }
-        const data=  await  getProducts()
-        localStorage.setItem("items",JSON.stringify(data))
-        setProducts(data)
-
-     
-        console.log('create functon')
-    },[getProducts])
 
     useEffect(()=>{
-       console.log('use effect run')
-       get()
-    },[get])
+        setProducts(data)
+    },[])
 
     useEffect(()=>{
         AOS.init();
@@ -63,32 +44,17 @@ const Home = () => {
  
     
     const search = (param)=>{
-       
+        setMatch(true)
         const text = param.target.value
         // setMatch(false)
         console.log(param.keyCode);
-        const newCart = products.filter(item=>Object.values(item).some(val=>typeof val === "string" && val.includes(text)));
-        //const filtered = data.filter(entry => Object.values(entry).some(val => typeof val === "string" && val.includes(keyword)));
-         console.log(newCart);
-         if(newCart.length===0){
-            setMatch(true)
-        }
-        else{
-         
+        const newCart = data.filter(item=>Object.values(item).some(val=>typeof val === "string" && val.includes(text)));     
+        if(newCart.length===0){
             setMatch(false)
         }
-        if(text.length<1 || text.endsWith(" ") || param.keyCode===8){
-            console.log('works');
-            setMatch(false)
-            setProducts(JSON.parse(localStorage.getItem("items")))
-            return
-        }
-     
         setProducts(newCart)
 
-     
-      
-        
+           
     }
     
 
@@ -205,11 +171,9 @@ const Home = () => {
             showCart={showCart} setShowCart={setShowCart}/> 
         <CartBody onClick={()=>setShowCart(false)}>
             <Container> {/* <h1>Products</h1> */}
-                {match && <NotFound/>}
+                {!match && <NotFound/>}
                 <Split>
-                    {products.length===0 && <div>
-                        <h2 className='loadingText'>Loading ...</h2>
-                        <img src={Loader} alt="loading" /> </div>} 
+
                     { products  && products.map((product) => {
                          
                          const {  name,  price,  amount,  path,  _id, selectedAmount   } = product
