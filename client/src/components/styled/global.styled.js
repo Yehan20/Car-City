@@ -84,6 +84,10 @@ const Global = createGlobalStyle`
    img{
     max-width:100%;
    }
+
+   .loadingText{
+    font-family:var(--ff-main);
+   }
    
    .modal-content{
     .modal-body{

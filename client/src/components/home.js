@@ -208,6 +208,7 @@ const Home = () => {
                 {match && <NotFound/>}
                 <Split>
                     {products.length===0 && <div>
+                        <h2 className='loadingText'>Loading ...</h2>
                         <img src={Loader} alt="loading" /> </div>} 
                     { products  && products.map((product) => {
                          
