@@ -67,12 +67,12 @@ const CartHeader=React.memo(({cart,removeItem,search,setCart,setBlock,showCart,s
   
     return (
      
-     <CartHeaderStyled>
+     <CartHeaderStyled >
     
-         <div>
+         <div onClick={()=>setShowCart(false)}>
             <h2><span>C</span>ar City</h2>
          </div>
-         <Split>
+         <Split onClick={()=>setShowCart(false)}>
             <input type="text" placeholder="Search"  onKeyUp={(e)=>search(e)} />
             <StyleButton width={'60px'}><ImSearch/></StyleButton>
          </Split>

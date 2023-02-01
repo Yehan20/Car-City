@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+# Car City
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Fake Shopping Cart , that is connected to a server , which has different brands of toy cars. Which allows users to view items , add them to a cart , remove items from a cart , search items and then check out. Has a small server
+made where new items can be added to the System. dynamic cart that reacts to any change in the cart items.
 
-## Available Scripts
+Link to the application: URL
 
-In the project directory, you can run:
+## Lessons learned
 
-### `npm start`
+- How to use Multer to add Imagees using Express
+- How to use React Router 6 to make private routes and for routing
+- How to use Env varaibles
+- How to make different schemas and models using mongoose
+- How to connect to mongodb atlas to application
+- How to use styled Components
+- How to deploy server to cyclic.sh
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+- Search Cars
+- Increaseing , Decreasing car amount amount
+- Adding a Car to System
+- Removing items from a Cart
+- Checkout
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Tools and technologies used
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- create-react-app
+- React + Hooks + Context
+- React Router 6
+- React Query
+- Styled Components
+- Bootstrap
+- Nodejs + Express
+- Mongo DB + Mongoose
+- Axios
+- Local Storage
+- Aos Animation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Deployment
 
-### `npm run eject`
+- Client-side application is deployed to [Netlify](https://netlify.com/)<br />
+- Server-side app is deployed to [Cylic](https://www.cyclic.sh/)
+- Mongo db is deployed to [Mongo DB Atlas](https://cloud.mongodb.com/)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Images
+- [Amazon](https://www.amazon.com/)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Get started
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Open a terminal and clone this repo:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Create a mongodb data base named carcity in your localserver or in atlas and repalce the connection string:
 
-## Learn More
+next make process.env file  and your connection key 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+CONNECTION_URL=YOUR URL 
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+# Clone this repository
+$ git clone 
 
-### Code Splitting
+# Go into the repository
+$ cd carCity
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Remove current origin repository
+$ git remote remove origin
 
-### Analyzing the Bundle Size
+# If you want, you can add a new remote repository
+$ git remote add origin https://github.com/<your-github-username>/<your-repo-name>.git
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Go to each folder and intstall the nodemodules:
+```bash
+# Terminal for the server
+# cd into the server folder
+$ cd server
 
-### Making a Progressive Web App
+# Install dependencies
+$ npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Install nodemon if you don't have it
+# You can either install it globally, or locally only for this project (remove the -g flag)
+npm install nodemon -
 
-### Advanced Configuration
+# run the server
+$ npm run devStart
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+# Terminal for the client
+# cd into the client folder
+$ cd client
 
-### Deployment
+# Install dependencies
+$ npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# run the client app
+$ npm start
+```
+```

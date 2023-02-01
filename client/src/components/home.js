@@ -36,10 +36,19 @@ const Home = () => {
 
 
     const get = useCallback(async()=>{
+      
+        //localStorage.setItem("items",JSON.stringify(data));   
+        if(localStorage.getItem("items"))  {
+            const items = JSON.parse(localStorage.getItem("items"));
+
+            setProducts(items)
+            return 
+        }
         const data=  await  getProducts()
-        localStorage.setItem("items",JSON.stringify(data));     
+        localStorage.setItem("items",JSON.stringify(data))
         setProducts(data)
-  
+
+     
         console.log('create functon')
     },[getProducts])
 
@@ -199,7 +208,7 @@ const Home = () => {
                 {match && <NotFound/>}
                 <Split>
                     {products.length===0 && <div>
-                        <h3>Loading</h3> <img src={Loader} alt="loading" /> </div>} 
+                        <h2 className='text-center'>Loading</h2> <img src={Loader} alt="loading" /> </div>} 
                     { products  && products.map((product) => {
                          
                          const {  name,  price,  amount,  path,  _id, selectedAmount   } = product

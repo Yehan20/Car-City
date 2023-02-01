@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import car from '../../imgs/car.png'
-
+import confetti from '../../imgs/confetti.gif'
 export const Container = styled.div`
    max-width:1140px;
    width:100%;
@@ -28,8 +28,7 @@ justify-content:center;
 flex-direction:column;
 align-items:center;
 justify-content:space-evenly;
-background-image:url('https://media.tenor.com/-SxWP-6u-hEAAAAC/snow-fall.gif');
-opacity:0.8;
+background-image:url(${confetti});
 h3{
    font-size:1.8rem;
    font-family:var(--ff-sub);
