@@ -10,7 +10,7 @@ const login= async(userName,password)=>{
     const formData = new FormData();
     formData.append('name',userName)
     formData.append('password',password)
-    const user = await axios.post('http://localhost:3001/admin/login',formData)
+    const user = await axios.post('https://carcityserver.cyclic.app/admin/login',formData)
     return user;
   }catch(e){
     return (e.response)
@@ -43,7 +43,7 @@ const addData = async (formdata)=>{
     console.log(formData)
 
    try{
-      const  addCar  =  await axios.post('http://localhost:3001/admin/add',formData) //http://localhost:3001/admin/login
+      const  addCar  =  await axios.post('https://carcityserver.cyclic.app/admin/add',formData) //http://localhost:3001/admin/login
       return addCar.data
     //  console.log(formData);
    }catch(err){

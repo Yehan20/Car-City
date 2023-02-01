@@ -208,7 +208,7 @@ const Home = () => {
                 {match && <NotFound/>}
                 <Split>
                     {products.length===0 && <div>
-                        <h2 className='text-center'>Loading</h2> <img src={Loader} alt="loading" /> </div>} 
+                        <img src={Loader} alt="loading" /> </div>} 
                     { products  && products.map((product) => {
                          
                          const {  name,  price,  amount,  path,  _id, selectedAmount   } = product
