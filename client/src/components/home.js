@@ -19,7 +19,7 @@ const Home = () => {
 
     const [veiwProduct,setViewProduct] = useState('')
     
-    const [match,setMatch]= useState(false)
+    const [match,setMatch]= useState(true)
     const [show, setShow] = useState(false);
     const [block,setBlock]= useState(false)
     const [showCart,setShowCart] = useState(false)
@@ -47,8 +47,9 @@ const Home = () => {
         setMatch(true)
         const text = param.target.value
         // setMatch(false)
-        console.log(param.keyCode);
-        const newCart = data.filter(item=>Object.values(item).some(val=>typeof val === "string" && val.includes(text)));     
+        let search = new RegExp(text , 'i')
+        
+        const newCart = data.filter((item)=>search.test(item.name));     
         if(newCart.length===0){
             setMatch(false)
         }
