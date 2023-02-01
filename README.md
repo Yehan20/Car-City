@@ -1,7 +1,7 @@
 # Car City
 
 A Fake Shopping Cart , that is connected to a server , which has different brands of toy cars. Which allows users to view items , add them to a cart , remove items from a cart , search items and then check out. Has a small server
-made where new items can be added to the System. dynamic cart that reacts to any change in the cart items.
+made where new items can be added to the System. dynamic cart that reacts to any change in the cart items. first response may take around 10 seconds becuase of free server.
 
 Link to the application: https://yn-carcity.netlify.app/
 
