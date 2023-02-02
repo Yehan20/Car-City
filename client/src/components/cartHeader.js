@@ -7,55 +7,40 @@ import {HiShoppingCart,HiX} from 'react-icons/hi'
 import { Split } from "./styled/Common.styled";
 import React, { useEffect, useState } from "react";
 import EmptyCart from "./common/emptyCart";
-import { useCallback } from "react";
 import Success from './common/success';
+import { useGlobalContext } from '../context/globalcontext';
 
 
 
-const CartHeader=React.memo(({cart,removeItem,search,setCart,setBlock,showCart,setShowCart})=>{
-    const [finalValues,setFinalValues]=useState({totalItems:0,totalPrice:0})
+const CartHeader=React.memo(({setBlock,showCart,setShowCart})=>{
+
     const [sucess,setSucess] = useState(false)
     const [animate,setAnimate] = useState(false)
-    const updateFinalPrices= useCallback(()=>{
-      const totals = cart.reduce((initialValue,cartItem)=>{
-            initialValue.totalItems = initialValue.totalItems + cartItem.selectedAmount;
-            initialValue.totalPrice = initialValue.totalPrice + cartItem.price;
-            return initialValue
-            
 
-      },{
-        totalItems:0,
-        totalPrice:0
-      })
-      
-     return totals
+  const {state,orderItems, searchItems} = useGlobalContext();
 
-  },[cart])
-
-  const orderItems = ()=>{
+  const handleOrder = ()=>{
     setSucess(true)
     setBlock(true)
-    setCart([]);
+    orderItems()
   }
+
+  
   const reset=()=>{
     setSucess(false)
     setBlock(false)
   }
 
 
-
-
     useEffect(()=>{
-      const final= updateFinalPrices();
+ 
       setAnimate(true)
       setTimeout(()=>{
          setAnimate(false)
       },1000)
-      setFinalValues({...final})
-
       
     
-   },[cart,updateFinalPrices])
+   },[state.miniCart])
 
    useEffect(()=>{
     Aos.init()
@@ -73,16 +58,16 @@ const CartHeader=React.memo(({cart,removeItem,search,setCart,setBlock,showCart,s
             <h2><span>C</span>ar City</h2>
          </div>
          <Split onClick={()=>setShowCart(false)}>
-            <input type="text" placeholder="Search"  onChange={(e)=>search(e)} />
+            <input type="text" placeholder="Search"  onChange={(e)=>searchItems(e.target.value)} />
             <StyleButton width={'60px'}><ImSearch/></StyleButton>
          </Split>
          <Split>
             <div>
-                <h3>Total Items : <span>{finalValues.totalItems}</span> </h3>
-                <h3>Total amount: RS <span>{finalValues.totalPrice}</span> </h3>
+                <h3>Total Items : <span>{state.total}</span> </h3>
+                <h3>Total amount: RS <span>{state.price}</span> </h3>
             </div>
             <button className={animate?'hvr-buzz-out':''}  onClick={()=>setShowCart(!showCart)}>
-             <span>{finalValues.totalItems}</span>   
+             <span>{state.total}</span>   
              <HiShoppingCart  size={'40px'} color={'red'} style={{display:'block',margin:'0 auto'}}/>
              </button>
              { showCart &&  <MiniCartBody   data-aos={"fade-up"}>
@@ -90,16 +75,16 @@ const CartHeader=React.memo(({cart,removeItem,search,setCart,setBlock,showCart,s
                        <aside>
                       
 
-                       {cart.length===0 && !sucess?<EmptyCart/>:''}
+                       {state.miniCart.length===0 && !sucess?<EmptyCart/>:''}
                            
-                       {cart.map((minCart)=>{
-                        return  <MiniCart removeItem={removeItem} id={cart.length===0?'empty':''} key={minCart._id} {...minCart} />
+                       {state.miniCart.map((minCart)=>{
+                        return  <MiniCart id={state.miniCart.length===0?'empty':''} key={minCart._id} {...minCart} />
                        
                         
                        })}
                         </aside>
                         
-                        <StyleButton onClick={()=>orderItems()}  disabled={cart.length===0?true:false} width={"360px"} >Check Out</StyleButton>
+                        <StyleButton onClick={handleOrder}  disabled={state.miniCart.length===0?true:false} width={"360px"} >Check Out</StyleButton>
                          {sucess && <StyleButton  width={"360px"} onClick={()=>reset()}>Order Again</StyleButton>}
                         
         
@@ -112,7 +97,12 @@ const CartHeader=React.memo(({cart,removeItem,search,setCart,setBlock,showCart,s
     )
 })
 
-const MiniCart =({_id,name,path,amount,price,selectedAmount,removeItem})=>{
+const MiniCart =({_id,name,path,amount,price,selectedAmount})=>{
+  const {deleteItem,updateFinalPrices} = useGlobalContext()
+  const handleDelete = ()=>{
+        deleteItem(_id)
+        updateFinalPrices()
+  }
 
    return <StyledMiniCart>
        <div>
@@ -127,7 +117,7 @@ const MiniCart =({_id,name,path,amount,price,selectedAmount,removeItem})=>{
         <p>RS:{price}</p>
        </div>
        <div>
-         <button onClick={()=>removeItem(_id)}>
+         <button onClick={()=>handleDelete()}>
              <HiX/>
          </button>
        </div>

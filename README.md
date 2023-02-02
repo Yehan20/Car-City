@@ -29,6 +29,7 @@ Link to the application: https://yn-carcity.netlify.app/
 
 - create-react-app
 - React + Hooks + Context
+- Reader Reducer
 - React Router 6
 - React Query
 - Styled Components
