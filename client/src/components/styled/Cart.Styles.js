@@ -55,7 +55,7 @@ export const CartHeaderStyled=styled.div`
         padding:1em 1em 2em 1em;
         flex-direction:column;
         gap:2em;
-        top:3em !important;
+        top:2.6em !important;
         h2{
           padding:0 !important;
           display:none !important;

@@ -10,6 +10,7 @@ import CartHeader from "./cartHeader";
 import {Modal} from 'react-bootstrap'
 import NotFound from './common/notfound';
 import {useGlobalContext} from '../context/globalcontext';
+import Loader from '../imgs/loader.gif';
 
 const Home = () => {
 
@@ -26,10 +27,15 @@ const Home = () => {
     const [show, setShow] = useState(false);
     const [block, setBlock] = useState(false)
     const [showCart, setShowCart] = useState(false)
+    const [loading,setLoading]=useState(true);
 
 
     useEffect(() => {
         AOS.init();
+        setTimeout(()=>{
+            setLoading(false)
+        },2000)
+       
     }, [])
 
     const handleClose = () => setShow(false);
@@ -65,12 +71,14 @@ const Home = () => {
             <CartBody onClick={
                 () => setShowCart(false)
             }>
-                <Container> {/* <h1>Products</h1> */}
-                    {
-                    !state.match && <NotFound/>
-                }
+                <Container>
+                    {!state.match && <NotFound/> }
+                    {loading && <div className='text-center'>
+                 
+                        <img src={Loader} alt='Loader'/>
+                    </div>}
                     <Split> {
-                        state.cart && state.cart.map((product) => {
+                        !loading && state.cart && state.cart.map((product) => {
 
                             const {
                                 name,
