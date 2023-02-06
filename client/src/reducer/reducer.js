@@ -72,7 +72,7 @@ export const reducer = (state, action) => {
         const newProdcuts = state.cart.map((product)=>{
             if(specificItem._id===product._id){
                return {
-                   ...product,amount:product.amount - specificItem.selectedAmount
+                   ...product,amount:product.amount - specificItem.selectedAmount,selectedAmount:1
                }
           
             }
@@ -82,7 +82,7 @@ export const reducer = (state, action) => {
        const updateSearch = state.searchCart.map((product)=>{
         if(specificItem._id===product._id){
            return {
-               ...product,amount:product.amount - specificItem.selectedAmount
+               ...product,amount:product.amount - specificItem.selectedAmount,selectedAmount:1
            }
       
         }

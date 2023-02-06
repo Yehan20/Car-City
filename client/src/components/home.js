@@ -78,7 +78,7 @@ const Home = () => {
                         <img src={Loader} alt='Loader'/>
                     </div>}
                     <Split> {
-                        !loading && state.cart && state.cart.map((product) => {
+                        !loading && state.cart.map((product) => {
 
                             const {
                                 name,
@@ -89,7 +89,8 @@ const Home = () => {
                                 selectedAmount
                             } = product
 
-                            return <article key={_id}
+                            return <>{amount !==0  &&
+                                <article key={_id}
                                 data-aos={"fade-up"}
                                 data-aos-duration={"1000"}>
                                 <h3>{name}</h3>
@@ -107,7 +108,7 @@ const Home = () => {
 
                                 <div>
                                     <button disabled={
-                                            amount === 0 ? true : false
+                                            amount === 0 ? true : false || selectedAmount>amount-1?true:false
                                         }
                                         onClick={
                                             () => increaseItem(_id)
@@ -132,6 +133,11 @@ const Home = () => {
                                     width={'150px'}>Add to Cart</StyleButton>
 
                             </article>
+                            
+                            
+                            }
+                          
+                            </>
                     })
                     } </Split>
                 </Container>
