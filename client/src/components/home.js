@@ -98,7 +98,7 @@ const Home = () => {
                                         () => handleShow(_id)
                                     }
                                     src={
-                                        "http://" + path
+                                       path
                                     }
                                     alt={name}/>
                                 <h4>Amount:
@@ -167,7 +167,7 @@ const LargerProducts = ({
         </Modal.Header>
         <Modal.Body>
             <img src={
-                    `http://${path}`
+                    `${path}`
                 }
                 alt={name}/>
             <p>{description}</p>

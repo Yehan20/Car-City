@@ -106,7 +106,7 @@ const MiniCart =({_id,name,path,amount,price,selectedAmount})=>{
 
    return <StyledMiniCart>
        <div>
-         <img src={`http://${path}`} alt={name} />
+         <img src={`${path}`} alt={name} />
          </div>
        <div>
        <p>{name}</p>
